@@ -16,6 +16,12 @@ const UserSchema = new mongoose.Schema({
             type: String,
             select: false,
         },
+        photoUrl: {
+            type: String
+        },
+        name: {
+            type: String,
+        },
     },
     google: {
         id: {
