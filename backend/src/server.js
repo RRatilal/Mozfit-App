@@ -5,8 +5,12 @@ const http = require('http');
 const path = require('path');
 
 const { routes } = require('./routes');
+const { setupWebsocket } = require('./websocket')
 
 const app = express();
+const server = http.Server(app);
+
+setupWebsocket(server)
 
 mongoose.connect('mongodb://localhost:27017/mozfit_2', {
     useNewUrlParser: true,
@@ -19,4 +23,5 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(routes);
-app.listen(3333)
+
+server.listen(3333)
