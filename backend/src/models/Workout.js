@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Exercise = require('./Exercises')
 
 const WorkoutSchema = new mongoose.Schema({
     workoutType: {
@@ -19,9 +21,11 @@ const WorkoutSchema = new mongoose.Schema({
     imageUrl: {
         type: String
     },
-    exerciseList: {
-        type: []
-    }
+    exerciseList: [{
+        type: Schema.Types.ObjectId,
+        ref: Exercise,
+    }],
+    userId: String,
 });
 
 module.exports = mongoose.model('Workout', WorkoutSchema);
