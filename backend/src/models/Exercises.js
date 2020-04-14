@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./Users')
+const User = require('./Users');
+
+const ExerciseImage = require('./utils/ExerciseImage');
+const ExerciseVideo = require('./utils/ExerciseVideo');
 
 const ExerciseSchema = new mongoose.Schema({
     exerciceType: {
@@ -12,13 +15,15 @@ const ExerciseSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    imageUrl: {
-        type: String,
+    image: {
+        type: ExerciseImage,
+        index: 'image',
     },
-    videoUrl: {
-        type: String,
+    video: {
+        type: ExerciseVideo,
+        index: 'video'
     },
-    author: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: User
     },
