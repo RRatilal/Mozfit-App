@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     dest: async (req, files, cb) => {
         if (await files.mimetype === 'image/jpeg' || await files.mimetype === 'image/jpg' || await files.mimetype === 'image/png')
-            return cb(null, path.relative(__dirname, "..", "assets", "video"));
+            return cb(null, path.resolve(__dirname, "..", "assets", "image"));
 
         if (await files.mimetype === 'video/mp4' || await files.mimetype === 'video/mkv' || await files.mimetype === 'video/3gp')
             return cb(null, path.resolve(__dirname, "..", "assets", "video"));
@@ -20,7 +20,7 @@ module.exports = {
                 return cb(new Error("Cannot upload file"))
 
             if (await files.mimetype === 'image/jpeg' || await files.mimetype === 'image/jpg' || await files.mimetype === 'image/png')
-                return cb(null, path.relative(__dirname, "..", "assets", "video"));
+                return cb(null, path.resolve(__dirname, "..", "assets", "image"));
 
             if (await files.mimetype === 'video/mp4' || await files.mimetype === 'video/mkv' || await files.mimetype === 'video/3gp')
                 return cb(null, path.resolve(__dirname, "..", "assets", "video"));
@@ -32,7 +32,7 @@ module.exports = {
                 if (err)
                     return cb(err)
 
-                const fileName = `${hash.toString('hex')}-${files.originalname}`
+                const fileName = `${hash.toString('hex').replace("/", "a")}-${files.originalname}`
 
                 return cb(null, fileName)
             })

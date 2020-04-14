@@ -22,7 +22,7 @@ routes.post('/signin', UsersController.signIn);
 routes.post('/gsignin', UsersController.googleSignin);
 
 routes.use(authMiddleware);
-routes.post('/exercise', ExerciseController.create, filesUpload);
+routes.post('/exercise/:userId', filesUpload, ExerciseController.create);
 routes.get('/exercise', ExerciseController.index);
 routes.get('/authorexec', ExerciseController.listAuthorExerc);
 

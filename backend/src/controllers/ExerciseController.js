@@ -2,8 +2,9 @@ const Exercise = require('../models/Exercises');
 
 module.exports = {
     async create(req, res) {
+        const { userId } = req.params
         const { image, video } = req.files;
-        const { exerciceType, name, description, userId } = req.body;
+        const { exerciceType, name, description } = req.body;
 
         let exercise = await Exercise.findOne({ "name": name });
 

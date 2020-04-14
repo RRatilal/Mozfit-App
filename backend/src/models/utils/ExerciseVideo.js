@@ -12,6 +12,7 @@ const ExerciseVideoSchema = new mongoose.Schema({
     name: String,
     size: Number,
     key: String,
+    url: String,
     created: {
         type: Date,
         default: Date.now,
