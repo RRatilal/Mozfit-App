@@ -27,6 +27,42 @@ module.exports = {
         return res.json({ user, token })
     },
 
+    async uploadLocalUserImage(req, res) {
+        const { userId } = req.params;
+        const { image } = req.files
+
+        let user = await Users.findOne({ "_id": userId }).select('+local.password');
+
+        if (!user)
+            return res.status(401)
+
+        const imageFile = {
+            type: 'Image',
+            name: image[0]["originalname"],
+            size: image[0]["size"],
+            key: image[0]["filename"],
+            url: image[0]['destination'] = "",
+        }
+
+        user = await Users.findByIdAndUpdate({ "_id": userId }, {
+            $set: {
+                method: 'local',
+                local: {
+                    email: user.local.email,
+                    password: user.local.password,
+                    photo: imageFile
+                }
+            },
+
+        }, { new: true }, (err, doc) => {
+            if (err) {
+                return res.json({ err })
+            }
+
+            return res.json(doc)
+        });
+    },
+
     async signIn(req, res) {
         const { email, password } = req.body;
 

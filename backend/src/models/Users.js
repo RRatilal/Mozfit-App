@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const ImageSchema = require('../utils/ImageSchema');
+
 const UserSchema = new mongoose.Schema({
     method: {
         type: [String],
@@ -16,8 +18,9 @@ const UserSchema = new mongoose.Schema({
             type: String,
             select: false,
         },
-        photoUrl: {
-            type: String
+        photo: {
+            type: ImageSchema,
+            index: 'image'
         },
         name: {
             type: String,
