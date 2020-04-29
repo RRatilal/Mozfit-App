@@ -3,15 +3,14 @@ const Comments = require('../models/Comments');
 
 module.exports = {
     async create(req, res) {
-        const { userId } = req.params;
-        const { comment } = req.body;
+        const { userId, comment } = req.body;
 
-        const comment = await Comments.create({
+        const comments = await Comments.create({
             userId,
             comment
         });
 
-        return res.json(comment)
+        return res.json(comments)
     },
 
     async getComments(req, res) {

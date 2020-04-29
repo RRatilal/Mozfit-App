@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const User = require('./Users');
 
 const CommentsSchema = new Schema({
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: User,
     },

@@ -1,0 +1,112 @@
+.signup-password {
+    width: 100%;
+    max-width: 450px;
+    text-align: right;
+    position: relative;
+}
+
+.signup-password input {
+    padding-right: 60px;
+}
+
+.signup-password .visible {
+    background: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+}
+
+.visible svg {
+    color: #2c373b;
+    transition: 0.3s;
+}
+
+.signup-password input:focus+.visible svg {
+    color: rgb(57, 172, 231, 1);
+}
+
+.terms {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.terms .radio {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: #192428;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4), -4px -4px 4px rgba(58, 67, 70, 0.5), inset 4px 4px 4px rgba(0, 0, 0, 0.4), inset -4px -4px 4px rgba(58, 67, 70, 0.5);
+    transition: 0.3s;
+}
+
+.radio input {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.radio .effect {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: transparent;
+}
+
+.effect::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgb(57, 172, 231, 1);
+    box-shadow: 0 0 10px rgb(57, 172, 231, 1);
+    opacity: 0;
+}
+
+.effect::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #192428;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4), -4px -4px 4px rgba(58, 67, 70, 0.5);
+    opacity: 0;
+}
+
+.radio input:checked+.effect::before,
+.radio input:checked+.effect::after {
+    opacity: 1;
+}
+
+.terms p {
+    font-size: 14px;
+    color: rgb(200, 200, 200);
+    letter-spacing: 0.5px;
+}
+
+.terms p span a {
+    text-decoration: none;
+    color: rgb(57, 172, 231, 1);
+    font-weight: 500;
+}

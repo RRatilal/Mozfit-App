@@ -1,0 +1,17 @@
+.reset h1 {
+    margin-bottom: 20px;
+}
+
+.reset p {
+    width: 100%;
+    max-width: 450px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: justify;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+
+.reset form input {
+    margin-bottom: 20px;
+}
