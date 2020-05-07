@@ -3,14 +3,17 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './global.css';
 
-import MainRoutes from './routes'
+import { AuthProvider } from './context/auth';
+import MainRoutes from './routes/routes';
 
 function App() {
 
   return (
-    <Router>
-      <MainRoutes />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <MainRoutes />
+      </Router>
+    </AuthProvider>
   );
 }
 

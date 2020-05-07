@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+import { useAuth } from '../../context/auth'
 
 import './styles.css';
 
@@ -13,6 +14,11 @@ import Exercise from '../Exercise';
 import Details from '../Details'
 
 const Dashboard: React.FC = () => {
+    const { signOut } = useAuth();
+
+    function handleSignOut() {
+        signOut();
+    }
 
     return (
         <Router>
@@ -30,7 +36,7 @@ const Dashboard: React.FC = () => {
                         <ScrollContent title="Workout">
                             <div className="slide-content">
                                 <button>
-                                    <Link to="/workout" >All Workouts</Link>
+                                    <Link to="/" >All Workouts</Link>
                                     <div>
                                         <span>12</span>
                                     </div>
@@ -71,10 +77,13 @@ const Dashboard: React.FC = () => {
                     <div className="main-painel">
 
 
+                        <button onClick={handleSignOut} >SignOut</button>
                         <div>
-                            <Route exact path="/workout" component={Workout} />
-                            <Route exact path="/exercise" component={Exercise} />
-                            <Route path="/details" component={Details} />
+                            <Switch>
+                                <Route exact path="/" component={Workout} />
+                                <Route exact path="/exercise" component={Exercise} />
+                                <Route exact path="/details" component={Details} />
+                            </Switch>
                         </div>
 
 

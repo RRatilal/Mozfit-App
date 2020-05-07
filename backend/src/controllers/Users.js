@@ -29,19 +29,20 @@ module.exports = {
 
     async uploadLocalUserImage(req, res) {
         const { userId } = req.params;
-        const { image } = req.files
+        const { originalname: name, size, key, url = '' } = req.file
 
         let user = await Users.findOne({ "_id": userId }).select('+local.password');
 
         if (!user)
             return res.status(401)
 
+        // console.log(req.file)
         const imageFile = {
             type: 'Image',
-            name: image[0]["originalname"],
-            size: image[0]["size"],
-            key: image[0]["filename"],
-            url: image[0]['destination'] = "",
+            name,
+            size,
+            key,
+            url,
         }
 
         user = await Users.findByIdAndUpdate({ "_id": userId }, {
@@ -50,7 +51,7 @@ module.exports = {
                 local: {
                     email: user.local.email,
                     password: user.local.password,
-                    photo: imageFile
+                    photo: await imageFile
                 }
             },
 
@@ -67,11 +68,14 @@ module.exports = {
         const { email, password } = req.body;
 
         const user = await Users.findOne({ "local.email": email }).select('+local.password');
+
+        if (!user)
+            return res.status(400).json({ error: "Invalid email" })
+
         const isPassMash = await bcrypt.compare(password, user.local.password)
 
-        if (!user && !isPassMash) {
-            return res.status(400).json({ error: "Invalid credentials" })
-        }
+        if (!isPassMash)
+            return res.status(400).json({ error: "Invalid password" })
 
         user.local.password = undefined;
 

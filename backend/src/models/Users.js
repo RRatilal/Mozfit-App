@@ -76,6 +76,18 @@ UserSchema.pre('save', async function (next) {
     } catch (error) {
         next(error)
     }
+});
+
+UserSchema.pre('findOneAndUpdate', async function (next) {
+    try {
+        const userPhoto = this._update.$set.local.photo;
+
+
+        userPhoto.url = await `http://192.168.43.251:3333/files/${userPhoto.key}`
+        next()
+    } catch (error) {
+        next(error)
+    }
 })
 
 module.exports = mongoose.model('Users', UserSchema)

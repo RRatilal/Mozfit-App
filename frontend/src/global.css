@@ -208,6 +208,21 @@ form input:focus::placeholder {
     opacity: 0;
 }
 
+.input-error {
+    border: 2px solid #e73939;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4), inset -4px -4px 4px rgba(58, 67, 70, 0.5), 0 0 8px #e73939;
+}
+.input-error::placeholder {
+    color: #e73939;
+}
+.input-error:hover {
+    border: 2px solid #e73939;
+}
+.input-error:focus {
+    border: 2px solid #e73939;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4), inset -4px -4px 4px rgba(58, 67, 70, 0.5), 0 0 8px #e73939;
+}
+
 .long-button {
     width: 100%;
     max-width: 450px;

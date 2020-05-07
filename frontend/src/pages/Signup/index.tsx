@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FaGoogle, FaFacebookF, FaEye, FaEyeDropper } from 'react-icons/fa';
+// import { Link, useHistory } from 'react-router-dom';
+import { FaGoogle, FaFacebookF, FaEye } from 'react-icons/fa';
 
 import './styles.css';
 
@@ -48,7 +48,7 @@ export default function Signup() {
                                 <input type="radio" />
                                 <div className="effect"></div>
                             </div>
-                            <p>By registering I confirm that I accept the <span><a href="#">Terms & Conditions</a></span> and <span><a href="#">Privacy Policy</a></span></p>
+                            <p>By registering I confirm that I accept the <span><a href="http://">Terms & Conditions</a></span> and <span><a href="http://">Privacy Policy</a></span></p>
                         </div>
 
                         <button className="long-button" type="button">

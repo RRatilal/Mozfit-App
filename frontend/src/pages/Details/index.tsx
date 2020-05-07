@@ -1,6 +1,5 @@
 import React from 'react';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+// import { useParams } from 'react-router-dom';
 
 import Week from './Week';
 
@@ -9,6 +8,7 @@ import './styles.css'
 import WorkoutImg from '../../assets/img1.jpg';
 
 const Details: React.FC = () => {
+
     return (
         <div className="details-container">
             <div className="close"></div>

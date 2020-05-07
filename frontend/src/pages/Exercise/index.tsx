@@ -16,7 +16,7 @@ const Exercise: React.FC = () => {
                     <span className="workout-title">Complete program for beginners</span>
                     <div className="litle-details">
                         <p><span>beginners </span> <span>| 6 weeks</span></p>
-                        <a href="#">more</a>
+                        <a href="http://">more</a>
                     </div>
                 </div>
                 <div className="workout">
@@ -26,7 +26,7 @@ const Exercise: React.FC = () => {
                     <span className="workout-title">Complete program for beginners</span>
                     <div className="litle-details">
                         <p><span>beginners </span> <span>| 6 weeks</span></p>
-                        <a href="#">more</a>
+                        <a href="http://">more</a>
                     </div>
                 </div>
             </div>
