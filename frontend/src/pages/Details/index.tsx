@@ -1,47 +1,104 @@
 import React from 'react';
-// import { useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 
 import Week from './Week';
 
-import './styles.css'
+import './styles.css';
 
-import WorkoutImg from '../../assets/img1.jpg';
+import { useAdmin } from '../../context/admin'
 
-const Details: React.FC = () => {
+interface workoutDetails {
+    description: string,
+    duration: number,
+    image: {
+        name: string,
+        url: string
+    },
+    level: string,
+    target: string,
+    workoutType: string,
+    weekslist: [];
+}
+
+export const Details: React.FC = () => {
+    const { workoutDetails } = useAdmin()
+    const history = useHistory();
+
+    console.log(workoutDetails)
+
+    function handleClick() {
+        history.goBack()
+    }
 
     return (
         <div className="details-container">
-            <div className="close"></div>
+            <div className="close" onClick={handleClick} ></div>
             <div className="details-header">
                 <div className="header-img">
-                    <img src={WorkoutImg} alt="" />
+                    <img src={workoutDetails?.image.url} alt={workoutDetails?.image.name} />
                 </div>
                 <div className="header-description">
                     <h2>Description</h2>
-                    <p>This complete beginner program can be used as a roadmap to help you build muscle the right way.</p>
+                    <textarea value={workoutDetails?.description} onChange={() => { }} />
                 </div>
             </div>
             <div className="details-main">
                 <div className="main-left">
                     <form>
                         <label>Target</label>
-                        <input value="Building muscles" />
-                        <label>Time</label>
-                        <input value="6 weeks" contentEditable={false} />
+                        <input defaultValue={workoutDetails?.target} />
+                        <label>duration</label>
+                        <input defaultValue={workoutDetails?.duration} contentEditable={false} />
                         <label>Level</label>
-                        <input value="Beginner" />
+                        <input defaultValue={workoutDetails?.level} />
                     </form>
                 </div>
                 <div className="main-right">
-                    <Week classname="week" title="1 Week" percentage={10} exercises={["exerc1", "exerc2", "exerc3"]} />
-                    <Week classname="week" title="2 Week" percentage={20} />
-                    <Week classname="week" title="3 Week" percentage={30} exercises={["exerc1"]} />
-                    <Week classname="week" title="4 Week" percentage={40} exercises={["exerc1"]} />
-                    <Week classname="week" title="5 Week" percentage={50} exercises={["exerc1"]} />
+                    {workoutDetails?.weeksList.map((week: any) => (
+                        <Week key={week.id} weekDetails={week} />
+                    ))}
                 </div>
             </div>
         </div>
     )
 }
 
-export default Details;
+export const Create: React.FC = () => {
+    const history = useHistory();
+
+    function handleClick() {
+        history.goBack()
+    }
+
+    return (
+        <div className="details-container">
+            <div className="close" onClick={handleClick} ></div>
+            <div className="details-header">
+                <div className="header-img">
+                    <img src="" alt="" />
+                </div>
+                <div className="header-description">
+                    <h2>Description</h2>
+                    <textarea placeholder="Type your description here..." ></textarea>
+                </div>
+            </div>
+            <div className="details-main">
+                <div className="main-left">
+                    <form>
+                        <label>Target</label>
+                        <input />
+                        <label>duration</label>
+                        <input contentEditable={false} />
+                        <label>Level</label>
+                        <input />
+                    </form>
+                </div>
+                <div className="main-right">
+                    {/* {details.weeksList.map((week: any) => (
+                        <Week key={week._id} weekDetails={week} />
+                    ))} */}
+                </div>
+            </div>
+        </div>
+    )
+}

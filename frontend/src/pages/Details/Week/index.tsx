@@ -1,22 +1,20 @@
 import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+// import { object } from 'yup';
 
 interface WeekProps {
-    classname?: string,
-    title: String,
-    percentage: any,
-    exercises?: String[],
+    weekDetails: any;
 }
 
-const Week: React.FC<WeekProps> = ({ classname, title, percentage, exercises }) => {
+const Week: React.FC<WeekProps> = ({ weekDetails }) => {
     return (
         <div className="week" >
-            <h1>{title}</h1>
+            <h1>{weekDetails.name}</h1>
             <div className="progress">
                 <CircularProgressbar
-                    value={percentage}
-                    text={`${[percentage]}%`}
+                    value={weekDetails.percentage}
+                    text={`${[weekDetails.percentage]}%`}
                     styles={buildStyles({
                         trailColor: "#192428",
                         textColor: "#fff"
@@ -26,20 +24,13 @@ const Week: React.FC<WeekProps> = ({ classname, title, percentage, exercises }) 
             </div>
             <div className="separator"></div>
             <div className="days">
-                <span>Day 1</span>
-                <button>{exercises ? exercises.length : "Add"} Exercices</button>
-                <span>Day 2</span>
-                <button>{exercises ? exercises.length : "Add"} Exercices</button>
-                <span>Day 3</span>
-                <button className="break" >Break</button>
-                <span>Day 4</span>
-                <button>7 Exercices</button>
-                <span>Day 5</span>
-                <button>9 Exercices</button>
-                <span>Day 6</span>
-                <button className="break" >Break</button>
-                <span>Day 7</span>
-                <button className="break" >Break</button>
+                {weekDetails.daysList.map((day: any) => (
+                    <div style={{ width: '100%' }} >
+                        <span style={{ width: '100%' }} >{day.name}</span>
+                        <button style={{ width: '100%', marginTop: 10 }} >{day.exerciseList ? day.exerciseList.length : "Add"} Exercices</button>
+
+                    </div>
+                ))}
             </div>
         </div>
     )

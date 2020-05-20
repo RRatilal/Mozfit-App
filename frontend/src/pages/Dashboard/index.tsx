@@ -1,7 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { HashRouter as Router, Route, Link, Switch, useRouteMatch, Redirect } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import { useAuth } from '../../context/auth'
+import { useAuth } from '../../context/auth';
+import { useAdmin } from '../../context/admin';
 
 import './styles.css';
 
@@ -9,19 +10,27 @@ import LogoImg from '../../assets/Logo.svg';
 import Avatar from '../../assets/avatar.jpg';
 
 import ScrollContent from './scrollContent';
-import Workout from '../Workout';
-import Exercise from '../Exercise';
-import Details from '../Details'
+import { AdminRoutes } from '../../routes/app.routes';
 
 const Dashboard: React.FC = () => {
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
+    const { getAllUserWorkouts, workouts } = useAdmin();
+    const [display, setDisplay] = useState("none");
+
+    useEffect(() => {
+        getAllUserWorkouts()
+    }, [])
 
     function handleSignOut() {
         signOut();
     }
 
+    function handleClickAvatar() {
+        setDisplay(display === "none" ? "flex" : "none")
+    }
+
     return (
-        <Router>
+        <Router basename="admin" >
             <div className="dashboard-container">
                 <div className="left-painel-container">
                     <div id="logo">
@@ -33,15 +42,18 @@ const Dashboard: React.FC = () => {
                     <span className="separator"></span>
 
                     <div className="options-painel">
+
                         <ScrollContent title="Workout">
                             <div className="slide-content">
                                 <button>
-                                    <Link to="/" >All Workouts</Link>
+                                    <Link to="/workout" >All Workouts</Link>
                                     <div>
-                                        <span>12</span>
+                                        <span>{workouts?.length}</span>
                                     </div>
                                 </button>
-                                <button>Create New</button>
+                                <button>
+                                    <Link to="/create" >Create New</Link>
+                                </button>
                             </div>
                         </ScrollContent>
                         <ScrollContent title="Exrcise">
@@ -52,7 +64,9 @@ const Dashboard: React.FC = () => {
                                         <span>12</span>
                                     </div>
                                 </button>
-                                <button>Create New</button>
+                                <button>
+                                    <Link to="/create" >Create New</Link>
+                                </button>
                             </div>
                         </ScrollContent>
                     </div>
@@ -70,22 +84,30 @@ const Dashboard: React.FC = () => {
                             </div>
                         </div>
                         <div className="avatar" >
-                            <img src={Avatar} alt="avatar" />
+                            <img src={Avatar} alt="avatar" onClick={handleClickAvatar} />
+                            <div className="user-details" style={{ display }} >
+                                <div className="avatar">
+                                    <img src={user?.local.photo.url} alt="avatar" />
+                                </div>
+                                <span className="avatar-name" >{user?.local.name}</span>
+                                <button className="signout" onClick={handleSignOut} >Sign out</button>
+                            </div>
                         </div>
                     </div>
 
                     <div className="main-painel">
 
-
-                        <button onClick={handleSignOut} >SignOut</button>
                         <div>
                             <Switch>
-                                <Route exact path="/" component={Workout} />
-                                <Route exact path="/exercise" component={Exercise} />
-                                <Route exact path="/details" component={Details} />
+                                {AdminRoutes.map((route, index) => (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        component={route.main}
+                                    />
+                                ))}
                             </Switch>
                         </div>
-
 
                     </div>
 

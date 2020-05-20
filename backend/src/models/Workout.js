@@ -1,30 +1,36 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const Exercise = require('./Exercises')
+const Week = require('./utils/Week');
+const ImageSchema = require('./utils/ImageSchema');
 
-const WorkoutSchema = new mongoose.Schema({
+const WorkoutSchema = new Schema({
+    title: {
+        type: String,
+        default: "Workout"
+    },
     workoutType: {
         type: String,
     },
-    subject: {
+    target: {
         type: String
     },
     duration: {
         type: Number
     },
-    Level: {
+    level: {
         type: String,
     },
     description: {
         type: String
     },
-    imageUrl: {
-        type: String
-    },
-    exerciseList: [{
+    weeksList: [{
         type: Schema.Types.ObjectId,
-        ref: Exercise,
+        ref: Week
     }],
+    image: {
+        type: ImageSchema,
+        index: 'image'
+    },
     userId: String,
 });
 

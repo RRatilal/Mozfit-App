@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const User = require('./Users');
 
-const ImageSchema = require('../utils/ImageSchema');
-const VideoSchema = require('../utils/VideoSchema');
+const ImageSchema = require('./utils/ImageSchema');
+const VideoSchema = require('./utils/VideoSchema');
 
 const ExerciseSchema = new mongoose.Schema({
     exerciceType: {

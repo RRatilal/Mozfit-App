@@ -45,6 +45,17 @@ button {
     cursor: pointer;
 }
 
+textarea {
+    width: 100%;
+    max-height: 140px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    line-height: 20px;
+    resize: none;
+}
+
 li {
     list-style: none;
 }

@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const authMiddleware = require('./middlewares/auth');
 const multer = require('multer');
-const { multerUploadExerciseFiles, multerUploadUserAvatar } = require('./config/multerConfig');
+const { multerUploadExerciseFiles, multerUploadSingleImage } = require('./config/multerConfig');
 
 const UsersController = require('./controllers/Users');
 const ExerciseController = require('./controllers/ExerciseController');
@@ -15,7 +15,7 @@ const filesUpload = multer(multerUploadExerciseFiles).fields([
     }
 ])
 
-const userAvatar = multer(multerUploadUserAvatar).single("file")
+const singleImage = multer(multerUploadSingleImage).single("file")
 
 const routes = Router();
 
@@ -25,13 +25,13 @@ routes.post('/gsignin', UsersController.googleSignin);
 
 routes.use(authMiddleware);
 
-routes.post('/userimg/:userId', userAvatar, UsersController.uploadLocalUserImage);
+routes.post('/userimg/:userId', singleImage, UsersController.uploadLocalUserImage);
 
 routes.post('/exercise/:userId', filesUpload, ExerciseController.create);
 routes.get('/exercise', ExerciseController.index);
 routes.get('/authorexec', ExerciseController.listAuthorExerc);
 
-routes.post('/workout/:userId', WorkoutController.create)
+routes.post('/workout/:userId', singleImage, WorkoutController.create)
 routes.get('/workout/:userId', WorkoutController.listUserWorkout)
 routes.get('/workout', WorkoutController.listWorkout)
 

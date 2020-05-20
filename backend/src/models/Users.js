@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const ImageSchema = require('../utils/ImageSchema');
+const ImageSchema = require('./utils/ImageSchema');
 
 const UserSchema = new mongoose.Schema({
     method: {

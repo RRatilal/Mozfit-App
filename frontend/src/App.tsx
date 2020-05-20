@@ -4,15 +4,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './global.css';
 
 import { AuthProvider } from './context/auth';
+import { AdminProvider } from './context/admin';
 import MainRoutes from './routes/routes';
 
 function App() {
 
   return (
     <AuthProvider>
-      <Router>
-        <MainRoutes />
-      </Router>
+      <AdminProvider>
+        <Router>
+          <MainRoutes />
+        </Router>
+      </AdminProvider>
     </AuthProvider>
   );
 }

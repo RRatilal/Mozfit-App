@@ -43,7 +43,7 @@ const multerUploadExerciseFiles = {
     },
 }
 
-const multerUploadUserAvatar = {
+const multerUploadSingleImage = {
     dest: path.resolve(__dirname, "..", "assets", "image"),
     storage: multer.diskStorage({
         destination: async (req, file, cb) => {
@@ -80,5 +80,5 @@ const multerUploadUserAvatar = {
 
 module.exports = {
     multerUploadExerciseFiles,
-    multerUploadUserAvatar
+    multerUploadSingleImage
 }
