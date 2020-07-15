@@ -4,6 +4,7 @@ import api from '../Services/api';
 import { useAuth } from './auth';
 
 interface WorkoutDetails {
+    id: string;
     description: string,
     duration: number,
     image: {
@@ -13,12 +14,12 @@ interface WorkoutDetails {
     level: string,
     target: string,
     workoutType: string,
-    weeksList: [];
+    weeksList: [],
 }
 
 interface AdminContextData {
     getAllUserWorkouts(): Promise<void>;
-    workouts: any[] | null;
+    workouts: WorkoutDetails[] | null;
     workoutDetails: WorkoutDetails | null;
     passingPropsToDatailsPage(details: WorkoutDetails): void
 }
@@ -29,6 +30,8 @@ export const AdminProvider: React.FC = ({ children }) => {
     const { user } = useAuth()
     const [workouts, setWorkouts] = useState<[] | null>(null);
     const [workoutDetails, setWorkoutDetails] = useState<WorkoutDetails | null>(null);
+
+
 
     async function getAllUserWorkouts() {
         try {

@@ -1,34 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Dashboard from '../pages/Dashboard';
+import Home from '../pages/Home';
 import Workout from '../pages/Workout';
-import Exercise from '../pages/Exercise';
-import { Details, Create } from '../pages/Details';
 
 
 export const AppRoutes: React.FC = () => (
-    <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="*" children={() => <h1>Page not Found</h1>} />
-    </Switch>
+    <div className="dashboard-container">
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/workout" component={Workout} />
+            <Route path="*" children={() => <h1>Page not Found</h1>} />
+        </Switch>
+    </div>
 );
-
-export const AdminRoutes = [
-    {
-        path: "/workout",
-        main: () => <Workout />
-    },
-    {
-        path: "/exercise",
-        main: () => <Exercise />
-    },
-    {
-        path: "/create",
-        main: () => <Create />
-    },
-    {
-        path: "/details",
-        main: () => <Details />
-    }
-];

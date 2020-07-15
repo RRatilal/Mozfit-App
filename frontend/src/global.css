@@ -9,7 +9,7 @@
 
 body {
     font: 400 14px Roboto, sans-serif;
-    background: #192428;
+    background: linear-gradient(155deg ,#454c76, #090b1e);
     -webkit-font-smoothing: antialiased;
     height: 100vh;
     display: flex;
@@ -25,20 +25,27 @@ h1 {
     font-size: 30px;
     color: #fff;
     letter-spacing: 1px;
+    font-weight: 400;
 }
 
 h2 {
     font-size: 22px;
     color: #fff;
     letter-spacing: 1px;
+    font-weight: 300;
 }
 
 p {
-    color: #fff
+    color: #fff;
+    margin: 0 !important;
 }
 
 input, button, textarea {
     font: 400 14px Roboto, sans-serif;
+}
+
+input:focus, button:focus, textarea:focus {
+    outline: 0;
 }
 
 button {
@@ -47,13 +54,13 @@ button {
 
 textarea {
     width: 100%;
-    max-height: 140px;
+    height: 240px;
     background: transparent;
     border: none;
     color: #fff;
     letter-spacing: 1px;
     line-height: 20px;
-    resize: none;
+    resize: none !important;
 }
 
 li {
@@ -63,7 +70,22 @@ li {
 img {
     width: 100%;
     height: auto;
+    transition: 0.4s;
 }
+
+.dashboard-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.dashboard-main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
 
 .sign-container {
     width: 80vw;
@@ -72,8 +94,7 @@ img {
     border-radius: 30px;
     flex-direction: row;
     justify-content: space-between;
-    background: #192428;
-    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.4), -8px -8px 15px rgba(58, 67, 70, 0.5);
+    box-shadow: -8px -8px 8px rgb(88, 94, 134), 8px 8px 8px rgba(9, 11, 30, 0.4);
 }
 
 .left {
@@ -86,18 +107,37 @@ img {
 }
 
 #logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    background: #192428;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4), inset -4px -4px 4px rgba(58, 67, 70, 0.5);
+    position: relative;
+    box-shadow: inset -2px -2px 8px rgb(88, 94, 134), inset 2px 2px 8px rgba(9, 11, 30, 0.4);
+}
+#logo:before,
+#logo:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: transparent;
+}
+
+#logo:before {
+    width: 76px;
+    height: 76px;
+    box-shadow: inset -2px -2px 2px rgb(88, 94, 134), inset 2px 2px 2px rgba(9, 11, 30, 0.4);
+}
+#logo:after {
+    width: 100%;
+    height: 100%;
+    box-shadow:  -2px -2px 2px rgb(88, 94, 134),  2px 2px 2px rgba(9, 11, 30, 0.4);
 }
 
 #logo img {
-    width: 120px;
+    width: 60px;
 }
 
 .form {
@@ -121,7 +161,7 @@ img {
     height: 50px;
     border-radius: 25px;
     border: none;
-    background: #192428;
+    background: linear-gradient(315deg ,#454c76, #090b1e);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,7 +170,7 @@ img {
 }
 
 .social-buttons .circle-button:hover {
-    background:rgb(57, 172, 231, 1);
+    background: linear-gradient(315deg ,rgb(57, 172, 231, 1), #090b1e);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6), -4px -4px 4px rgba(57, 172, 231, 0.3);
 }
 
@@ -195,8 +235,8 @@ form input {
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 2px;
-    background: #192428;
-    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.4), inset -4px -4px 4px rgba(58, 67, 70, 0.5);
+    background: transparent;
+    box-shadow: inset -4px -4px 4px rgba(126, 138, 204, 0.5), inset 4px 4px 4px rgba(20, 24, 26, 0.5);
     transition: 0.3s;
 }
 

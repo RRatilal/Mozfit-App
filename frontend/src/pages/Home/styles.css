@@ -1,0 +1,246 @@
+.main-container {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    padding: 24px;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.main-container .main-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.main-content .main-content-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.cards-left .card-preview {
+    display: flex;
+    width: 100%;
+    min-width: 640px;
+    height: 400px;
+    border-radius: 32px;
+    box-shadow: inset -8px -8px 8px rgba(68, 75, 116, 0.8), inset 8px 8px 8px rgba(20, 24, 26, 0.5);
+}
+
+.card-preview .circular-chart {
+    width: 400px;
+    height: 400px;
+    padding: 56px;
+    position: relative;
+}
+.circular-chart .CircularProgressbar-path {
+    stroke: #39ACE7 !important;
+}
+.circular-chart::before,
+.circular-chart::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.circular-chart::before {
+    width: 292px;
+    height: 292px;
+    box-shadow: inset -4px -4px 4px rgba(68, 75, 116, 0.8), inset 4px 4px 4px rgba(20, 24, 26, 0.5);
+}
+.circular-chart::after {
+    width: 274px;
+    height: 274px;
+    box-shadow: -4px -4px 4px rgba(68, 75, 116, 0.8), 4px 4px 4px rgba(20, 24, 26, 0.5);
+}
+
+.circular-chart .inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.circular-chart .inside .CircularProgressbar-path {
+    stroke: #f15c10 !important;
+}
+.circular-chart .inside::before,
+.circular-chart .inside::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.circular-chart .inside::before {
+    width: 204px;
+    height: 204px;
+    box-shadow: inset -4px -4px 4px rgba(68, 75, 116, 0.8), inset 4px 4px 4px rgba(20, 24, 26, 0.5);
+}
+.circular-chart .inside::after {
+    width: 188px;
+    height: 188px;
+    box-shadow: -4px -4px 4px rgba(68, 75, 116, 0.8), 4px 4px 4px rgba(20, 24, 26, 0.5);
+}
+
+.circular-chart .dot {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: -8px -8px 8px rgba(68, 75, 116, 0.8), 8px 8px 8px rgba(20, 24, 26, 0.3);
+}
+
+.card-preview .circular-chart-details {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 48px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.details span {
+    display: flex;
+    align-items: center;
+    color: #8592de;
+    letter-spacing: 1px;
+
+}
+
+.details p {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.circular-chart-details .monthly {
+    margin-bottom: 24px;
+}
+
+.circular-chart-details .monthly .litle-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid #f15c10;
+    margin-right: 8px;
+}
+
+.circular-chart-details .yearly .litle-circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid #39ACE7;
+    margin-right: 8px;
+}
+
+.cards-left .card-litle-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 640px;
+    height: 80px;
+    padding: 16px;
+    margin-top: 32px;
+    border-radius: 32px;
+    box-shadow: -8px -8px 8px rgba(68, 75, 116, 0.8), 8px 8px 8px rgba(20, 24, 26, 0.5);
+}
+
+.card-litle-preview .percentage {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    border-radius: 24px;
+    position: relative;
+    color: #fff;
+    box-shadow: -8px -8px 8px rgba(68, 75, 116, 0.3), 8px 8px 8px rgba(20, 24, 26, 0.3);
+}
+.card-litle-preview .percentage::after {
+    content: "";
+    width: 96%;
+    height: 82%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 24px;
+    box-shadow: inset -4px -4px 4px rgba(68, 75, 116, 0.3), inset 4px 4px 4px rgba(20, 24, 26, 0.3);
+}
+
+.card-litle-preview .percentage .circularPro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+.percentage .circularPro .CircularProgressbar-path {
+    stroke: #9be400;
+}
+
+.card-litle-preview .details {
+    flex: 1;
+    align-items: center;
+}
+
+.cards-right {
+    width: 100%;
+    margin: 0 32px;
+}
+
+.cards-right .card-litle-chart {
+    width: 100%;
+    height: 160px;
+    border-radius: 32px;
+    box-shadow: -8px -8px 8px rgba(68, 75, 116, 0.8), 8px 8px 8px rgba(20, 24, 26, 0.5);
+}
+
+.cards-right .MuiPaper-root {
+    background: transparent;
+    box-shadow: none;
+}
+
+.cards-right .MuiPaper-root svg path {
+    stroke-width: 5px;
+    stroke-linecap: round;
+    filter: drop-shadow();
+}
+
+.cards-right .Component-root-1 {
+    height: 112px !important;
+}
+
+.cards-right .card-litle-days {
+    width: 100%;
+    height: 320px;
+    border-radius: 32px;
+    margin-top: 32px;
+    box-shadow: inset -8px -8px 8px rgba(68, 75, 116, 0.8), inset 8px 8px 8px rgba(20, 24, 26, 0.5); 
+}
+
+.main-container .students {
+    width: 320px;
+    height: calc(100vh - 100px);
+    border-radius: 32px;
+    box-shadow: -8px -8px 8px rgba(68, 75, 116, 0.5), 8px 8px 8px rgba(20, 24, 26, 0.8);
+}
